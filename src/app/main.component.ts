@@ -27,8 +27,6 @@ export class MainComponent {
   }
 
   handleNodeClicked(node: GameNode) {
-    console.log('asd');
-    
     this.selectedNode = node;
     this.session.toolbox.useTool(node, this.session.board);
     //TODO toolbox
