@@ -3,35 +3,61 @@
 </ng-template>
 
 <div class="sidebar left">
-        <h3>Tools</h3>
-        <div class="tools" *ngFor="let tool of session.toolbox.tools">
-            <div class="tool-icon" [ngStyle]="{'background-color': tool.color}"></div>
-            <div class="tool" (click)="session.toolbox.setActiveTool(tool)" [ngClass]="{'selected': session.toolbox.activeTool?.nodeType == tool.nodeType}">{{tool.title}}</div>
-        </div>
+    <h3>Tools</h3>
+    <div class="tools" *ngFor="let tool of session.toolbox.tools">
+        <div class="tool-icon" [ngStyle]="{'background-color': tool.color}"></div>
+        <div class="tool" (click)="session.toolbox.setActiveTool(tool)" [ngClass]="{'selected': session.toolbox.activeTool?.nodeType == tool.nodeType}">{{tool.title}}</div>
+    </div>
 
-        <h3>Actions</h3>
-        <div class="option">
-            <a href="#" (click)="session.board.reset(); false;" class="btn btn-danger">Reset Board</a>
-            <a href="#" (click)="session.save(); false;" class="btn btn-warning">Save Board</a>
-        </div>
+    <h3>Actions</h3>
+    <div class="option actions row">
+        <a href="#" (click)="session.board.resetLevel(); false;" class="btn btn-danger">Reset Board</a>
+        <!-- <a href="#" (click)="session.save(); false;" class="btn btn-warning">Save Board</a> -->
+    </div>
 </div>
 
-    <div class="sidebar right" *ngIf="selectedNode || selectedRoute">
-        <a href="#" (click)="deselectNode(); false;" class="btn btn-danger">X</a>
-        
-            <h3>Node</h3>
-            <div class="option">
-                <p>ID: {{selectedNode.id}}</p>
-                <p>Type: {{selectedNode.nodeType}}</p>
-                <p>Position X: {{selectedNode.position.x}}</p>
-                <p>Position Y: {{selectedNode.position.y}}</p>
-            </div>
-            <h3 *ngIf="selectedRoute">Route</h3>
-            <div class="option" *ngIf="selectedRoute">
-                <p>Start: {{selectedRoute.startNode?.id}}</p>
-                <p>End: {{selectedRoute.endNode?.id}}</p>
-                <p>Length: {{selectedRoute.nodes?.length}}</p>
-                <p>Waypoints: {{selectedRoute.waypoints().length}}</p>
-                <p>Valid: {{selectedRoute.valid}}</p>
-            </div>
+<div class="sidebar right" *ngIf="selectedNode || selectedRoute">
+    <a href="#" (click)="deselectNode(); false;" class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
+
+    <div class="header">
+        <div [ngClass]="selectedNode.nodeClasses()"></div>
+        <h3>Node #{{selectedNode.id}}</h3>
     </div>
+
+    <div class="option node">
+        <p>Type: {{selectedNode.nodeTypeToString()}}</p>
+        <p>Position X: {{selectedNode.position.x}}</p>
+        <p>Position Y: {{selectedNode.position.y}}</p>
+    </div>
+
+    <ng-template [ngIf]="selectedRoute">
+        <div class="header">
+            <div style="background-color: #00f6ff"></div>
+            <h3>Route</h3>
+        </div>
+        <div class="option" style="margin: 0 20px 0 20px;">
+            <div class="info" style="justify-content: unset; width: 100%; align-items: center; background-color: #e0e0e0; border-radius: 5px; padding: 5px; border: solid 1px rgba(1,1,1,0.1)">
+                <div [ngClass]="'START'" style="width: 30px; height: 30px;">{{selectedRoute.startNode?.id}}</div>
+                <span style="margin-left: 10px; font-weight: 600;">Start</span>
+
+                <div style="padding: 5px;">
+                    <p style="margin: 0;">Position:</p>
+                    <p style="margin: 0;">{{selectedRoute.startNode?.position.x}}</p>
+                </div>
+            </div>
+            <div class="info" style="margin-top: 8px; justify-content: unset; width: 100%; align-items: center; background-color: #e0e0e0; border-radius: 5px; padding: 5px; border: solid 1px rgba(1,1,1,0.1)">
+                <div [ngClass]="'END'" style="width: 30px; height: 30px;">{{selectedRoute.endNode?.id}}</div>
+                <span style="margin-left: 10px; font-weight: 600;">End</span>
+
+                <div style="padding: 5px;">
+                    <p style="margin: 0;">Position:</p>
+                    <p style="margin: 0;">{{selectedRoute.endNode?.position.x}}</p>
+                </div>
+            </div>
+            <p><span>Length:</span> {{selectedRoute.nodes?.length}}</p>
+            <p><span>Waypoints:</span> {{selectedRoute.waypoints().length}}</p>
+            <p><span>Valid:</span> {{selectedRoute.valid}}</p>
+        </div>
+    </ng-template>
+
+</div>

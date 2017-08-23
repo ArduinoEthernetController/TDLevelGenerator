@@ -1,94 +1,134 @@
 .gameboard {
-    margin: 32px auto;
-    position: relative;
-    background-color: greenyellow;
+  margin: 32px auto;
+  position: relative;
+  background-color: greenyellow;
 }
 .gamenode-frame {
-    position: absolute;
-    background-color: #007bff;
+  position: absolute;
+  background-color: #007bff;
 }
 .gamenode {
-    width: 100%;
-    height: 100%;
-    background-color: white;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
 }
-.gamenode.PATH {
-    background-color: orange;
+.PATH {
+  background-color: orange;
 }
-.gamenode.BUILDZONE {
-    background-color: #8d70ff;
+.BUILDZONE {
+  background-color: #8d70ff;
 }
-.gamenode.WAYPOINT {
-    background-color: lightblue;
+.WAYPOINT {
+  background-color: lightblue;
 }
-.gamenode.START {
-    background-color: lightgreen;
+.START {
+  background-color: lightgreen;
 }
-.gamenode.END {
-    background-color: red;
+.END {
+  background-color: red;
 }
 .gamenode:hover {
-    background-color: #bbbbbb;
-    cursor: pointer;
+  background-color: #bbbbbb;
+  cursor: pointer;
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h3 {
-    margin: 20px 0 20px 0;
-    text-align: center;
-    font-weight: 100;
+  margin: 20px 0 20px 0;
+  text-align: center;
+  font-weight: 100;
 }
 
 .sidebar {
-    background-color: #ececec;
-    position: absolute;
-    top: 0;
-    width: 350px;
-    height: 100%;
+  background-color: #ececec;
+  position: absolute;
+  top: 0;
+  width: 350px;
+  height: 100%;
 }
 .sidebar.left {
-    left: 0;
-    border-right: solid 1px rgba(1,1,1,0.1);
+  left: 0;
+  border-right: solid 1px rgba(1, 1, 1, 0.1);
 }
 .sidebar.right {
-    right: 0;
-    border-left: solid 1px rgba(1,1,1,0.1);
+  right: 0;
+  border-left: solid 1px rgba(1, 1, 1, 0.1);
+}
+.sidebar.right .close {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 20px;
+  color: black;
+}
+
+.sidebar.right .header {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.header div {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+.header div.NORMAL {
+  border: solid 1px #007bff;
+}
+
+.header h3 {
+  margin: 0;
 }
 .sidebar .tools {
-    position: relative;
+  position: relative;
 }
 .sidebar .tools .tool {
-    height: 35px;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    cursor: pointer;
-    padding-left: 60px;
+  height: 35px;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  padding-left: 60px;
 }
 .sidebar .tools .tool:hover {
-    background-color: #dedede;
+  background-color: #dedede;
 }
 .sidebar .tools .tool.selected {
-    background-color: #e4e4e4;
-    font-weight: 600;
+  background-color: #e4e4e4;
+  font-weight: 600;
 }
 
 .tool-icon {
-    position: absolute;
-    left: 17px;
-    top: 3px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+  position: absolute;
+  left: 17px;
+  top: 3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
 }
 
 .option div {
-    width: 75px;
-    display: flex;
-    justify-content: space-between;
+  width: 75px;
+  display: flex;
+  justify-content: space-between;
 }
 
+.option.actions {
+  margin: 10px 20px 10px 20px;
+  display: flex;
+  justify-content: space-around;
+}
 
+.actions a {
+  margin: 10px;
+}
+
+.option.node {
+  margin: 20px;
+}

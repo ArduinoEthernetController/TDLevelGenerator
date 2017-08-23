@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { GameSession } from "./model/gamesession";
+import { GameSession } from './model/gamesession';
 import { GameNode } from './model/gamenode';
-import { GameRoute } from "./model/gameroute";
+import { GameRoute } from './model/gameroute';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { GameRoute } from "./model/gameroute";
 })
 export class MainComponent {
   private sessionKey: string = 'session';
-  
+
   private session: GameSession;
 
   private _selectedNode: GameNode;
@@ -20,7 +20,9 @@ export class MainComponent {
     this._selectedNode = node;
     this.selectedRoute = node ? this.session.board.routeWithStartId(node.id) : null;
   }
-  get selectedNode() { return this._selectedNode }
+  get selectedNode() {
+    return this._selectedNode;
+  }
 
   constructor() {
     this.session = new GameSession().init(this.sessionKey);
@@ -29,15 +31,12 @@ export class MainComponent {
   handleNodeClicked(node: GameNode) {
     this.selectedNode = node;
     this.session.toolbox.useTool(node, this.session.board);
-    //TODO toolbox
+    this.session.save();
   }
 
-  handleNodeHover(node: GameNode) {
-    //TODO hover
-  }
+  handleNodeHover(node: GameNode) {}
 
   deselectNode() {
     this.selectedNode = null;
   }
-
 }
